@@ -2,6 +2,7 @@
 
 #pragma once
 #include <string>
+#include "game.h"
 
 enum class mcsdk_DevicePlatform
 {
@@ -22,6 +23,11 @@ struct mcsdk_GameVersion
     int minor;
     int build;
     int revision;
+
+    std::string toString() const {
+        return std::to_string(major) + "." + std::to_string(minor) + "." + 
+               std::to_string(build) + "." + std::to_string(revision);
+    }
 };
 
 struct mcsdk_ReturnType
@@ -29,10 +35,11 @@ struct mcsdk_ReturnType
     int offset;
     std::string signature;
     mcsdk_SuccessStatus status;
+    std::string errorMessage;
 };
 
 namespace mcsdk
 {
     void init();
-    mcsdk_ReturnType fetch(std::string term);
+    mcsdk_ReturnType fetch(const std::string& term);
 };
