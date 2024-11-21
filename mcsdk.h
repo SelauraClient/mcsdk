@@ -4,42 +4,42 @@
 #include <string>
 #include "game.h"
 
-enum class mcsdk_DevicePlatform
-{
-    mcsdk_DevicePlatform_NotFound = 0,
-    mcsdk_DevicePlatform_Windows = 1,
-    mcsdk_DevicePlatform_Android = 2,
-};
-
-enum class mcsdk_SuccessStatus
-{
-    mcsdk_SuccessStatus_Error = 0,
-    mcsdk_SuccessStatus_Successful = 1,
-};
-
-struct mcsdk_GameVersion
-{
-    int major;
-    int minor;
-    int build;
-    int revision;
-
-    std::string toString() const {
-        return std::to_string(major) + "." + std::to_string(minor) + "." + 
-               std::to_string(build) + "." + std::to_string(revision);
-    }
-};
-
-struct mcsdk_ReturnType
-{
-    int offset;
-    std::string signature;
-    mcsdk_SuccessStatus status;
-    std::string errorMessage;
-};
-
 namespace mcsdk
 {
+    enum class DevicePlatform
+    {
+        NotFound = 0,
+        Windows = 1,
+        Android = 2,
+    };
+    
+    enum class Status
+    {
+        Error = 0,
+        Successful = 1,
+    };
+    
+    struct GameVersion
+    {
+        int major;
+        int minor;
+        int build;
+        int revision;
+    
+        std::string toString() const {
+            return std::to_string(major) + "." + std::to_string(minor) + "." + 
+                   std::to_string(build) + "." + std::to_string(revision);
+        }
+    };
+    
+    struct ReturnType
+    {
+        int offset;
+        std::string signature;
+        mcsdk_SuccessStatus status;
+        std::string errorMessage;
+    };
+
     void init();
-    mcsdk_ReturnType fetch(const std::string& term);
+    mcsdk::ReturnType fetch(const std::string& term);
 };
