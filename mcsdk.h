@@ -2,6 +2,7 @@
 
 #pragma once
 #include <string>
+#include "mcsdk_config.h"
 #include "game.h"
 
 namespace mcsdk
